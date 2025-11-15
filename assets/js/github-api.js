@@ -231,14 +231,13 @@ class GitHubAPI {
     }
 
     async initialize() {
-        // Create necessary folders
-        await this.createDataFolder();
-        await this.createAssetsFolder();
-        
-        // Create initial posts.json if it doesn't exist
+        // Check if posts.json exists, create if not
         const existingPosts = await this.getPosts();
         if (!existingPosts) {
+            console.log('Creating initial posts.json...');
             await this.savePosts([]);
+        } else {
+            console.log('posts.json already exists');
         }
     }
 }
