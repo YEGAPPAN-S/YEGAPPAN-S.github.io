@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog post by Yegappan Sekar">
+    <title>Post - Yegappan Sekar</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/blog.css">
+    <link rel="stylesheet" href="./assets/css/post.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__container">
+            <a href="./index.html" class="nav__logo">Yegappan</a>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="./index.html#home" class="nav__link">Home</a></li>
+                    <li><a href="./index.html#about" class="nav__link">About</a></li>
+                    <li><a href="./index.html#skills" class="nav__link">Skills</a></li>
+                    <li><a href="./index.html#experience" class="nav__link">Experience</a></li>
+                    <li><a href="./index.html#portfolio" class="nav__link">Portfolio</a></li>
+                    <li><a href="./blog.html" class="nav__link active">Blog</a></li>
+                    <li><a href="./index.html#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="uil uil-moon"></i>
+                </button>
+                <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Post Content -->
+    <article class="post-single">
+        <div class="container-small">
+            <!-- Back Button -->
+            <a href="./blog.html" class="post__back">
+                <i class="uil uil-arrow-left"></i>
+                Back to Blog
+            </a>
+
+            <!-- Post Header -->
+            <header class="post__header">
+                <div class="post__meta">
+                    <span class="post__category" id="post-category"></span>
+                    <span class="post__date" id="post-date"></span>
+                    <span class="post__reading-time" id="reading-time"></span>
+                </div>
+                <h1 class="post__title" id="post-title"></h1>
+                <div class="post__author">
+                    <img src="./packages/images/Yega.jpg" alt="Yegappan Sekar">
+                    <div>
+                        <strong>Yegappan Sekar</strong>
+                        <span>Web Developer & Designer</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Featured Image -->
+            <div class="post__featured-image" id="featured-image-container">
+                <!-- Image will be loaded dynamically -->
+            </div>
+
+            <!-- Post Body -->
+            <div class="post__content" id="post-content">
+                <!-- Content will be loaded dynamically -->
+            </div>
+
+            <!-- Post Footer -->
+            <footer class="post__footer">
+                <div class="post__tags" id="post-tags">
+                    <!-- Tags will be loaded dynamically -->
+                </div>
+                
+                <div class="post__share">
+                    <h4>Share this post</h4>
+                    <div class="share__buttons">
+                        <a href="#" class="share__btn" id="share-twitter" target="_blank">
+                            <i class="uil uil-twitter"></i>
+                        </a>
+                        <a href="#" class="share__btn" id="share-linkedin" target="_blank">
+                            <i class="uil uil-linkedin"></i>
+                        </a>
+                        <a href="#" class="share__btn" id="share-facebook" target="_blank">
+                            <i class="uil uil-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </article>
+
+    <!-- Related Posts -->
+    <section class="related-posts">
+        <div class="container">
+            <h2>Related Posts</h2>
+            <div class="blog__grid" id="related-posts">
+                <!-- Related posts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3>Yegappan Sekar</h3>
+                    <p>Web Developer & Designer</p>
+                </div>
+                
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./index.html#about">About</a></li>
+                        <li><a href="./index.html#portfolio">Portfolio</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__social">
+                    <h4>Follow Me</h4>
+                    <div class="footer__social-links">
+                        <a href="https://in.linkedin.com/in/yegappan-sekar-983073211" target="_blank">
+                            <i class="uil uil-linkedin-alt"></i>
+                        </a>
+                        <a href="https://github.com/YEGAPPAN-S" target="_blank">
+                            <i class="uil uil-github-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2025 Yegappan Sekar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/blog.js"></script>
+    <script src="./assets/js/post.js"></script>
+</body>
+</html>
