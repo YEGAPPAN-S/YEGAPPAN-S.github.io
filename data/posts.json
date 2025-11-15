@@ -1,6 +1,18 @@
 {
   "posts": [
     {
+      "id": "mi0pd182zaodvno6zy",
+      "title": "test post 1",
+      "content": "<p>test</p>",
+      "excerpt": "",
+      "category": "",
+      "tags": [],
+      "featuredImage": "https://yegappan-s.github.io/admin.html",
+      "status": "draft",
+      "date": "2025-11-15T19:51:30.674Z",
+      "updatedAt": "2025-11-15T19:51:30.675Z"
+    },
+    {
       "id": "mi058z9uer06u2ljtoc",
       "title": "test post",
       "content": "<h1>hi</h1>\n<h2>hi</h2>\n<p>vanakam makaley</p>\n<p>&nbsp;</p>",
@@ -25,5 +37,5 @@
       "updatedAt": "2025-11-15T10:11:18.613Z"
     }
   ],
-  "lastUpdated": "2025-11-15T10:28:29.608Z"
+  "lastUpdated": "2025-11-15T19:51:31.112Z"
 }
