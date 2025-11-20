@@ -69,6 +69,10 @@
                     <i class="uil uil-setting"></i>
                     Settings
                 </a>
+                <a href="#" class="nav-item" data-view="design">
+                    <i class="uil uil-palette"></i>
+                    Design
+                </a>
                 <a href="./index.html" class="nav-item" target="_blank">
                     <i class="uil uil-eye"></i>
                     View Site
@@ -296,6 +300,193 @@
             </div>
         </main>
     </div>
+    <!-- Design Settings View - Add this after settings-view in admin.html -->
+    <div class="admin-view" id="design-view" style="display: none;">
+        <div class="settings-container">
+            <!-- Color Settings -->
+            <div class="settings-section">
+                <h2>Color Settings</h2>
+                <p>Customize your site's color palette</p>
+                
+                <form class="settings-form" id="color-settings-form">
+                    <div class="form-group">
+                        <label>Primary Color</label>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <input type="color" id="primary-color" value="#0071e3" style="width: 60px; height: 40px; border: 1px solid #d2d2d7; border-radius: 8px; cursor: pointer;">
+                            <input type="text" id="primary-color-text" value="#0071e3" style="flex: 1;">
+                        </div>
+                        <small>Main brand color for buttons, links, and accents</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Secondary Color</label>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <input type="color" id="secondary-color" value="#1d1d1f" style="width: 60px; height: 40px; border: 1px solid #d2d2d7; border-radius: 8px; cursor: pointer;">
+                            <input type="text" id="secondary-color-text" value="#1d1d1f" style="flex: 1;">
+                        </div>
+                        <small>Text and heading colors</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Background Color</label>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <input type="color" id="bg-color" value="#ffffff" style="width: 60px; height: 40px; border: 1px solid #d2d2d7; border-radius: 8px; cursor: pointer;">
+                            <input type="text" id="bg-color-text" value="#ffffff" style="flex: 1;">
+                        </div>
+                        <small>Main background color</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Accent Color</label>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <input type="color" id="accent-color" value="#f5f5f7" style="width: 60px; height: 40px; border: 1px solid #d2d2d7; border-radius: 8px; cursor: pointer;">
+                            <input type="text" id="accent-color-text" value="#f5f5f7" style="flex: 1;">
+                        </div>
+                        <small>Secondary backgrounds and highlights</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" id="save-colors">
+                            <i class="uil uil-check"></i>
+                            Save Colors
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="preview-colors">
+                            <i class="uil uil-eye"></i>
+                            Preview Changes
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="reset-colors">
+                            <i class="uil uil-redo"></i>
+                            Reset to Default
+                        </button>
+                    </div>
+                </form>
+            </div>
+    
+            <!-- Typography Settings -->
+            <div class="settings-section">
+                <h2>Typography</h2>
+                <p>Customize fonts and text styles</p>
+                
+                <form class="settings-form" id="typography-settings-form">
+                    <div class="form-group">
+                        <label>Primary Font</label>
+                        <select id="primary-font">
+                            <option value="Inter">Inter (Default)</option>
+                            <option value="Roboto">Roboto</option>
+                            <option value="Open Sans">Open Sans</option>
+                            <option value="Lato">Lato</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="Raleway">Raleway</option>
+                            <option value="Ubuntu">Ubuntu</option>
+                            <option value="Nunito">Nunito</option>
+                            <option value="system-ui">System Default</option>
+                        </select>
+                        <small>Main font for body text</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Heading Font</label>
+                        <select id="heading-font">
+                            <option value="inherit">Same as Primary</option>
+                            <option value="Inter">Inter</option>
+                            <option value="Roboto">Roboto</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="Raleway">Raleway</option>
+                            <option value="Playfair Display">Playfair Display</option>
+                            <option value="Merriweather">Merriweather</option>
+                        </select>
+                        <small>Font for headings and titles</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Base Font Size</label>
+                        <select id="base-font-size">
+                            <option value="14px">Small (14px)</option>
+                            <option value="16px" selected>Medium (16px)</option>
+                            <option value="18px">Large (18px)</option>
+                            <option value="20px">Extra Large (20px)</option>
+                        </select>
+                        <small>Default text size for body content</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" id="save-typography">
+                            <i class="uil uil-check"></i>
+                            Save Typography
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="reset-typography">
+                            <i class="uil uil-redo"></i>
+                            Reset to Default
+                        </button>
+                    </div>
+                </form>
+            </div>
+    
+            <!-- Layout Settings -->
+            <div class="settings-section">
+                <h2>Layout Options</h2>
+                <p>Adjust spacing and layout settings</p>
+                
+                <form class="settings-form" id="layout-settings-form">
+                    <div class="form-group">
+                        <label>Border Radius</label>
+                        <select id="border-radius">
+                            <option value="0px">None (Sharp corners)</option>
+                            <option value="4px">Small (4px)</option>
+                            <option value="8px" selected>Medium (8px)</option>
+                            <option value="12px">Large (12px)</option>
+                            <option value="16px">Extra Large (16px)</option>
+                            <option value="24px">Rounded (24px)</option>
+                        </select>
+                        <small>Roundness of buttons and cards</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Content Width</label>
+                        <select id="content-width">
+                            <option value="1000px">Narrow (1000px)</option>
+                            <option value="1200px" selected>Standard (1200px)</option>
+                            <option value="1400px">Wide (1400px)</option>
+                            <option value="100%">Full Width</option>
+                        </select>
+                        <small>Maximum width of content containers</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" id="save-layout">
+                            <i class="uil uil-check"></i>
+                            Save Layout
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="reset-layout">
+                            <i class="uil uil-redo"></i>
+                            Reset to Default
+                        </button>
+                    </div>
+                </form>
+            </div>
+    
+            <!-- Export/Import Design -->
+            <div class="settings-section">
+                <h2>Design Presets</h2>
+                <p>Export or import your design settings</p>
+                
+                <div class="data-actions">
+                    <button class="btn btn-secondary" id="export-design">
+                        <i class="uil uil-download-alt"></i>
+                        Export Design Settings
+                    </button>
+                    <button class="btn btn-secondary" id="import-design">
+                        <i class="uil uil-upload-alt"></i>
+                        Import Design Settings
+                    </button>
+                    <input type="file" id="import-design-file" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Toast Notification -->
     <div class="toast" id="toast">
@@ -311,6 +502,7 @@
 
     <!-- Scripts -->
     <script src="./assets/js/github-api.js"></script>
-    <script src="./assets/js/admin.js"></script>
+    <script src="./assets/js/admin-fixed.js"></script>
+    <script src="./assets/js/design-customizer.js"></script>
 </body>
 </html>
