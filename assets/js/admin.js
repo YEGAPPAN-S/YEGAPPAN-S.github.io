@@ -221,7 +221,7 @@ class AdminPanel {
         } else if (view === 'settings') {
             document.getElementById('settings-view').style.display = 'block';
         } else if (view === 'design') {
-            document.getElementById('design-view')?.style.display = 'block';
+            document.getElementById('design-view').style.display = 'block';
         }
     }
 
