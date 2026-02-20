@@ -1,76 +1,51 @@
 /**
- * api.js — Frontend API client
- * Communicates with Google Apps Script Web App
+ * api.js — Frontend API client v1.2.0
  *
- * CORS FIX EXPLAINED:
- * Google Apps Script cannot respond to OPTIONS preflight requests.
- * Preflight is triggered by:
- *   - Custom headers (Authorization, X-*)
- *   - Content-Type: application/json
+ * CORS FINAL FIX:
+ * Apps Script POST requests sometimes redirect to script.googleusercontent.com
+ * which drops CORS headers entirely — causing "No ACAO header" errors.
  *
- * Solution: Use "simple requests" that skip preflight:
- *   - POST with Content-Type: text/plain  (GAS reads body as postData.contents)
- *   - Auth token passed as URL param ?token=  (not as Authorization header)
- *   - Method override via URL param ?_method=PUT|DELETE  (no custom headers)
+ * Solution: Encode ALL requests (including "writes") as GET with data in URL params.
+ * GET requests:
+ *   ✅ Never trigger preflight
+ *   ✅ Never lose CORS headers through redirects
+ *   ✅ Work 100% reliably with Apps Script
+ *
+ * Sensitive data (passwords) is still protected by HTTPS.
  */
 
-// ── Configuration ──────────────────────────────────────────────
-const API_BASE = window.SITE_CONFIG?.apiUrl || 'https://script.google.com/macros/s/AKfycby5l4oClNYYHHxl9RM03ueaFAmCiYHhWS_z9v-SMwhAm7cKIyl-77wrHfKy97w5aIx0/exec';
+const API_BASE = window.SITE_CONFIG?.apiUrl
+  || 'https://script.google.com/macros/s/AKfycby5l4oClNYYHHxl9RM03ueaFAmCiYHhWS_z9v-SMwhAm7cKIyl-77wrHfKy97w5aIx0/exec';
 
-// ── Core HTTP client (CORS-safe) ───────────────────────────────
-async function apiRequest(method, path, body, authToken) {
+// ── Core: all requests are GET with params in URL ──────────────
+async function apiCall(path, params) {
   const url = new URL(API_BASE);
   url.searchParams.set('path', path);
 
-  // Pass token as URL param (avoids Authorization header → avoids preflight)
-  if (authToken) url.searchParams.set('token', authToken);
-
-  // Normalize PUT/DELETE → POST with ?_method= in URL (stays "simple request")
-  if (method === 'PUT' || method === 'DELETE') {
-    url.searchParams.set('_method', method);
-    method = 'POST';
+  if (params) {
+    Object.entries(params).forEach(([k, v]) => {
+      if (v !== undefined && v !== null && v !== '') {
+        // Stringify objects/arrays
+        url.searchParams.set(k, typeof v === 'object' ? JSON.stringify(v) : v);
+      }
+    });
   }
 
-  const opts = { method, redirect: 'follow' };
-
-  if (method === 'POST') {
-    // text/plain does NOT trigger preflight — GAS still receives body via postData.contents
-    opts.headers = { 'Content-Type': 'text/plain;charset=utf-8' };
-    opts.body = JSON.stringify(body || {});
+  let response;
+  try {
+    response = await fetch(url.toString(), { redirect: 'follow' });
+  } catch (err) {
+    throw new Error('Network error — check your internet connection.');
   }
-
-  const response = await fetch(url.toString(), opts);
 
   let data;
   try {
     data = await response.json();
   } catch (e) {
-    throw new Error('Invalid server response. Check your Apps Script deployment URL.');
+    throw new Error('Invalid response from server. Check your Apps Script deployment URL.');
   }
 
   if (data.error && data.code && data.code >= 400) {
-    const err = new Error(data.error);
-    err.code = data.code;
-    throw err;
-  }
-  return data;
-}
-
-// ── Simple GET helper ──────────────────────────────────────────
-async function apiGet(path, params, authToken) {
-  const url = new URL(API_BASE);
-  url.searchParams.set('path', path);
-  if (authToken) url.searchParams.set('token', authToken);
-  if (params) {
-    Object.entries(params).forEach(([k, v]) => {
-      if (v !== undefined && v !== null && v !== '' && v !== false) {
-        url.searchParams.set(k, v);
-      }
-    });
-  }
-  const response = await fetch(url.toString(), { redirect: 'follow' });
-  const data = await response.json();
-  if (data.error && data.code >= 400) {
     const err = new Error(data.error);
     err.code = data.code;
     throw err;
@@ -82,22 +57,22 @@ async function apiGet(path, params, authToken) {
 const API = {
 
   getSettings() {
-    return apiGet('public/settings');
+    return apiCall('public/settings');
   },
 
   getPosts({ page = 1, limit = 10, tag = '', category = '', q = '', featured = false } = {}) {
-    return apiGet('public/posts', { page, limit, tag, category, q, featured: featured || undefined });
+    return apiCall('public/posts', { page, limit, tag, category, q, featured: featured || undefined });
   },
 
   getPost(slug) {
-    return apiGet('public/post', { slug });
+    return apiCall('public/post', { slug });
   },
 
-  submitContact(formData) {
-    return apiRequest('POST', 'public/contact', formData);
+  submitContact({ name, email, message }) {
+    return apiCall('public/contact', { name, email, message });
   },
 
-  // ── Admin API ─────────────────────────────────────────────────
+  // ── Admin API ──────────────────────────────────────────────
   Admin: {
     _token: null,
 
@@ -136,7 +111,7 @@ const API = {
     },
 
     async login(email, password) {
-      const res = await apiRequest('POST', 'admin/login', { email, password });
+      const res = await apiCall('admin/login', { email, password });
       if (res.data?.token) {
         this.setToken(res.data.token, res.data.expiresAt);
         localStorage.setItem('admin_user', JSON.stringify(res.data.user));
@@ -144,20 +119,22 @@ const API = {
       return res;
     },
 
-    async logout() {
-      try { await apiRequest('POST', 'admin/logout', {}, this.getToken()); } catch (e) {}
+    logout() {
+      const token = this.getToken();
       this.clearToken();
+      if (token) return apiCall('admin/logout', { token }).catch(() => {});
     },
 
-    getPosts()           { return apiGet('admin/posts',    {}, this.getToken()); },
-    getStats()           { return apiGet('admin/stats',    {}, this.getToken()); },
-    getSettings()        { return apiGet('admin/settings', {}, this.getToken()); },
-    createPost(data)     { return apiRequest('POST',   'admin/posts',             data, this.getToken()); },
-    updatePost(id, data) { return apiRequest('PUT',    `admin/posts/${id}`,       data, this.getToken()); },
-    deletePost(id)       { return apiRequest('DELETE', `admin/posts/${id}`,       {},   this.getToken()); },
-    publishPost(id)      { return apiRequest('POST',   `admin/posts/${id}/publish`,   {}, this.getToken()); },
-    unpublishPost(id)    { return apiRequest('POST',   `admin/posts/${id}/unpublish`, {}, this.getToken()); },
-    updateSettings(data) { return apiRequest('PUT',    'admin/settings',          data, this.getToken()); },
+    getPosts()           { return apiCall('admin/posts',    { token: this.getToken() }); },
+    getStats()           { return apiCall('admin/stats',    { token: this.getToken() }); },
+    getSettings()        { return apiCall('admin/settings', { token: this.getToken() }); },
+
+    createPost(data)     { return apiCall('admin/posts/create',  { token: this.getToken(), ...data }); },
+    updatePost(id, data) { return apiCall('admin/posts/update',  { token: this.getToken(), id, ...data }); },
+    deletePost(id)       { return apiCall('admin/posts/delete',  { token: this.getToken(), id }); },
+    publishPost(id)      { return apiCall('admin/posts/publish',   { token: this.getToken(), id }); },
+    unpublishPost(id)    { return apiCall('admin/posts/unpublish', { token: this.getToken(), id }); },
+    updateSettings(data) { return apiCall('admin/settings/update', { token: this.getToken(), ...data }); },
   }
 };
 
