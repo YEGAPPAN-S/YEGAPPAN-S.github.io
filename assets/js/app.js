@@ -5,7 +5,7 @@
 // ── Site Configuration ─────────────────────────────────────────
 // Edit this ONCE — all pages import from here
 window.SITE_CONFIG = {
-  apiUrl: 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec',
+  apiUrl: 'https://script.google.com/macros/s/AKfycby5l4oClNYYHHxl9RM03ueaFAmCiYHhWS_z9v-SMwhAm7cKIyl-77wrHfKy97w5aIx0/exec',
   siteUrl: 'https://YEGAPPAN-S.github.io',
   siteName: 'Yegappan Sekar',
 };
