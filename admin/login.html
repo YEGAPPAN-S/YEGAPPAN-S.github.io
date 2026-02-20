@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — Yegappan</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+  <link rel="icon" href="/images/favicon.ico">
+</head>
+<body class="admin-body">
+
+<div class="login-page">
+  <div class="login-box">
+    <div class="login-box__logo">Yega<span>.</span><span style="font-size:1rem; font-weight:400;"> Admin</span></div>
+    <p class="login-box__subtitle">Sign in to manage your content</p>
+
+    <div id="login-error" class="alert alert--error" style="display:none;"></div>
+
+    <div id="login-form">
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" placeholder="admin@example.com" autocomplete="email" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" type="password" id="password" placeholder="••••••••" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn--primary" id="login-btn" style="width:100%;" type="button">
+        Sign in
+      </button>
+    </div>
+
+    <div style="margin-top:1.5rem; text-align:center;">
+      <a href="/" style="font-family:var(--font-ui); font-size:0.8125rem; color:var(--text-3);">← Back to site</a>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/api.js"></script>
+<script>
+// Already logged in?
+if (API.Admin.isLoggedIn()) {
+  window.location.href = '/admin/';
+}
+
+const loginBtn = document.getElementById('login-btn');
+const errorEl = document.getElementById('login-error');
+
+async function doLogin() {
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  if (!email || !password) {
+    errorEl.textContent = 'Please enter email and password.';
+    errorEl.style.display = 'flex';
+    return;
+  }
+
+  loginBtn.disabled = true;
+  loginBtn.innerHTML = '<span class="spinner"></span> Signing in...';
+  errorEl.style.display = 'none';
+
+  try {
+    const res = await API.Admin.login(email, password);
+    if (res.data?.token) {
+      if (res.data.expiresAt) {
+        localStorage.setItem('admin_token_expiry', new Date(res.data.expiresAt).getTime());
+      }
+      window.location.href = '/admin/';
+    }
+  } catch (err) {
+    errorEl.textContent = err.message || 'Invalid credentials. Please try again.';
+    errorEl.style.display = 'flex';
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Sign in';
+  }
+}
+
+loginBtn.addEventListener('click', doLogin);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') doLogin();
+});
+</script>
+</body>
+</html>

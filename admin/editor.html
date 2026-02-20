@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor — Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+  <link rel="icon" href="/images/favicon.ico">
+</head>
+<body class="admin-body">
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <a href="/admin/" class="admin-sidebar__logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Yega<span>.</span> Admin
+    </a>
+    <nav class="admin-nav">
+      <div class="admin-nav__section">Content</div>
+      <a href="/admin/" class="admin-nav__item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a>
+      <a href="/admin/posts.html" class="admin-nav__item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Posts</a>
+      <a href="/admin/editor.html" class="admin-nav__item active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New Post</a>
+      <div class="admin-nav__section">Site</div>
+      <a href="/admin/settings.html" class="admin-nav__item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+    </nav>
+    <div class="admin-sidebar__footer">
+      <button id="logout-btn" class="btn btn--ghost btn--sm" style="width:100%; color:var(--text-3);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <button id="sidebar-toggle" class="btn btn--ghost btn--sm" style="padding:0.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="admin-topbar__title" id="editor-title-bar">New Post</span>
+      </div>
+      <div class="admin-topbar__actions">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="btn btn--outline btn--sm" id="save-draft-btn">Save draft</button>
+        <button class="btn btn--primary btn--sm" id="publish-btn">Publish</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <div id="save-msg" style="margin-bottom:1rem;"></div>
+      
+      <div class="editor-layout">
+        <!-- Main editor -->
+        <div>
+          <div class="editor-main">
+            <div class="editor-toolbar">
+              <button class="editor-toolbar__btn" title="Heading 2" onclick="insertMd('## ')">H2</button>
+              <button class="editor-toolbar__btn" title="Heading 3" onclick="insertMd('### ')">H3</button>
+              <div class="editor-toolbar__sep"></div>
+              <button class="editor-toolbar__btn" title="Bold" onclick="wrapMd('**')"><strong>B</strong></button>
+              <button class="editor-toolbar__btn" title="Italic" onclick="wrapMd('*')"><em>I</em></button>
+              <button class="editor-toolbar__btn" title="Inline code" onclick="wrapMd('`')">`</button>
+              <div class="editor-toolbar__sep"></div>
+              <button class="editor-toolbar__btn" title="Link" onclick="insertLink()">🔗</button>
+              <button class="editor-toolbar__btn" title="Code block" onclick="insertCodeBlock()">{ }</button>
+              <button class="editor-toolbar__btn" title="Blockquote" onclick="insertMd('> ')">❝</button>
+              <div class="editor-toolbar__sep"></div>
+              <button class="editor-toolbar__btn" title="Unordered list" onclick="insertMd('- ')">• List</button>
+              <button class="editor-toolbar__btn" title="Ordered list" onclick="insertMd('1. ')">1. List</button>
+            </div>
+
+            <input class="editor-title-input" type="text" id="post-title" placeholder="Post title...">
+
+            <div class="editor-tabs">
+              <button class="editor-tab active" id="tab-write" onclick="switchTab('write')">Write</button>
+              <button class="editor-tab" id="tab-preview" onclick="switchTab('preview')">Preview</button>
+            </div>
+
+            <div class="editor-pane active" id="pane-write">
+              <textarea class="editor-textarea" id="post-content" placeholder="Write your post in Markdown...&#10;&#10;## Heading&#10;&#10;Paragraph text here.&#10;&#10;```javascript&#10;// Code blocks work too&#10;console.log('hello');&#10;```"></textarea>
+            </div>
+
+            <div class="editor-pane" id="pane-preview">
+              <div class="editor-preview prose" id="preview-html"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meta sidebar -->
+        <div class="editor-meta">
+          <div class="editor-meta__section">
+            <div class="editor-meta__title">Status</div>
+            <select class="form-select" id="post-status" style="margin-bottom:0.75rem;">
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+            </select>
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-family:var(--font-ui); font-size:0.875rem; color:var(--text-2);">
+              <input type="checkbox" id="post-featured" style="accent-color:var(--accent);">
+              Featured post
+            </label>
+          </div>
+
+          <div class="editor-meta__section">
+            <div class="editor-meta__title">Classification</div>
+            <div class="form-group">
+              <label class="form-label" for="post-category">Category</label>
+              <select class="form-select" id="post-category">
+                <option value="Engineering">Engineering</option>
+                <option value="Product">Product</option>
+                <option value="Automation">Automation</option>
+                <option value="Career">Career</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" for="post-tags">Tags (comma-separated)</label>
+              <input class="form-input" type="text" id="post-tags" placeholder="wordpress, automation, shopify">
+            </div>
+          </div>
+
+          <div class="editor-meta__section">
+            <div class="editor-meta__title">URL</div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" for="post-slug">Slug</label>
+              <input class="form-input" type="text" id="post-slug" placeholder="auto-generated-from-title">
+            </div>
+          </div>
+
+          <div class="editor-meta__section">
+            <div class="editor-meta__title">Excerpt</div>
+            <div class="form-group" style="margin-bottom:0;">
+              <textarea class="form-textarea" id="post-excerpt" placeholder="Short description shown in listings..." style="min-height:80px; font-family:var(--font-body); font-size:0.9rem;"></textarea>
+            </div>
+          </div>
+
+          <div class="editor-meta__section">
+            <div class="editor-meta__title">Cover Image</div>
+            <div class="form-group" style="margin-bottom:0;">
+              <input class="form-input" type="url" id="post-cover" placeholder="https://...image.jpg">
+            </div>
+          </div>
+
+          <div class="editor-meta__section">
+            <div class="editor-meta__title">SEO</div>
+            <div class="form-group">
+              <label class="form-label" for="post-meta-title">Meta Title</label>
+              <input class="form-input" type="text" id="post-meta-title" placeholder="Defaults to post title">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" for="post-meta-desc">Meta Description</label>
+              <textarea class="form-textarea" id="post-meta-desc" placeholder="SEO description (150-160 chars)" style="min-height:80px;"></textarea>
+              <div id="meta-desc-count" style="font-family:var(--font-ui); font-size:0.75rem; color:var(--text-4); text-align:right; margin-top:0.25rem;">0 / 160</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/api.js"></script>
+<script>
+if (!API.Admin.requireAuth()) {}
+document.getElementById('logout-btn').addEventListener('click', async () => { await API.Admin.logout(); window.location.href = '/admin/login.html'; });
+document.getElementById('sidebar-toggle').addEventListener('click', () => { document.getElementById('admin-sidebar').classList.toggle('open'); });
+
+const postId = new URLSearchParams(window.location.search).get('id');
+let currentPost = null;
+
+// Load existing post if editing
+if (postId) {
+  document.getElementById('editor-title-bar').textContent = 'Edit Post';
+  loadPost();
+}
+
+async function loadPost() {
+  try {
+    const res = await API.Admin.getPosts();
+    const posts = res.data || [];
+    const post = posts.find(p => p.id === postId);
+    if (!post) { showMsg('Post not found', 'error'); return; }
+    currentPost = post;
+    fillForm(post);
+  } catch(e) {
+    showMsg(e.message || 'Failed to load post', 'error');
+  }
+}
+
+function fillForm(post) {
+  document.getElementById('post-title').value = post.title || '';
+  document.getElementById('post-content').value = post.content_md || '';
+  document.getElementById('post-status').value = post.status || 'draft';
+  document.getElementById('post-featured').checked = post.featured === 'TRUE';
+  document.getElementById('post-category').value = post.category || 'Engineering';
+  document.getElementById('post-tags').value = post.tags || '';
+  document.getElementById('post-slug').value = post.slug || '';
+  document.getElementById('post-excerpt').value = post.excerpt || '';
+  document.getElementById('post-cover').value = post.cover_image || '';
+  document.getElementById('post-meta-title').value = post.meta_title || '';
+  document.getElementById('post-meta-desc').value = post.meta_description || '';
+  updateMetaDescCount();
+}
+
+function getFormData(status) {
+  const title = document.getElementById('post-title').value.trim();
+  const content = document.getElementById('post-content').value;
+  const titleSlug = title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,80);
+
+  return {
+    title,
+    content_md: content,
+    status: status || document.getElementById('post-status').value,
+    featured: document.getElementById('post-featured').checked,
+    category: document.getElementById('post-category').value,
+    tags: document.getElementById('post-tags').value.trim(),
+    slug: document.getElementById('post-slug').value.trim() || titleSlug,
+    excerpt: document.getElementById('post-excerpt').value.trim(),
+    cover_image: document.getElementById('post-cover').value.trim(),
+    meta_title: document.getElementById('post-meta-title').value.trim(),
+    meta_description: document.getElementById('post-meta-desc').value.trim(),
+  };
+}
+
+function showMsg(msg, type = 'success') {
+  const el = document.getElementById('save-msg');
+  el.innerHTML = `<div class="alert alert--${type}">${msg}</div>`;
+  if (type === 'success') setTimeout(() => el.innerHTML = '', 4000);
+}
+
+async function save(status) {
+  const data = getFormData(status);
+  if (!data.title) { showMsg('Title is required', 'error'); return; }
+
+  document.getElementById('save-draft-btn').disabled = true;
+  document.getElementById('publish-btn').disabled = true;
+
+  try {
+    let res;
+    if (postId || (currentPost && currentPost.id)) {
+      res = await API.Admin.updatePost(postId || currentPost.id, data);
+    } else {
+      res = await API.Admin.createPost(data);
+      currentPost = res.data;
+      // Update URL without reload
+      history.replaceState(null, '', `/admin/editor.html?id=${currentPost.id}`);
+    }
+    showMsg(status === 'published' ? '✓ Post published!' : '✓ Draft saved');
+    // Update slug field if server generated it
+    if (res.data?.slug) document.getElementById('post-slug').value = res.data.slug;
+  } catch(e) {
+    showMsg(e.message || 'Failed to save', 'error');
+  } finally {
+    document.getElementById('save-draft-btn').disabled = false;
+    document.getElementById('publish-btn').disabled = false;
+  }
+}
+
+document.getElementById('save-draft-btn').addEventListener('click', () => save('draft'));
+document.getElementById('publish-btn').addEventListener('click', () => save('published'));
+
+// Auto-generate slug from title
+document.getElementById('post-title').addEventListener('blur', () => {
+  const slugEl = document.getElementById('post-slug');
+  if (!slugEl.value && !postId) {
+    const title = document.getElementById('post-title').value;
+    slugEl.value = title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,80);
+  }
+});
+
+// Tab switching
+function switchTab(tab) {
+  document.getElementById('tab-write').classList.toggle('active', tab === 'write');
+  document.getElementById('tab-preview').classList.toggle('active', tab === 'preview');
+  document.getElementById('pane-write').classList.toggle('active', tab === 'write');
+  document.getElementById('pane-preview').classList.toggle('active', tab === 'preview');
+
+  if (tab === 'preview') {
+    const md = document.getElementById('post-content').value;
+    document.getElementById('preview-html').innerHTML = MarkdownParser.parse(md);
+  }
+}
+
+// Toolbar helpers
+function insertMd(prefix) {
+  const ta = document.getElementById('post-content');
+  const start = ta.selectionStart;
+  const before = ta.value.substring(0, start);
+  const after = ta.value.substring(ta.selectionEnd);
+  ta.value = before + prefix + after;
+  ta.focus();
+  ta.setSelectionRange(start + prefix.length, start + prefix.length);
+}
+
+function wrapMd(wrapper) {
+  const ta = document.getElementById('post-content');
+  const start = ta.selectionStart;
+  const end = ta.selectionEnd;
+  const selected = ta.value.substring(start, end) || 'text';
+  const before = ta.value.substring(0, start);
+  const after = ta.value.substring(end);
+  ta.value = before + wrapper + selected + wrapper + after;
+  ta.focus();
+}
+
+function insertLink() {
+  const url = prompt('URL:');
+  if (!url) return;
+  const ta = document.getElementById('post-content');
+  const start = ta.selectionStart;
+  const selected = ta.value.substring(start, ta.selectionEnd) || 'link text';
+  const before = ta.value.substring(0, start);
+  const after = ta.value.substring(ta.selectionEnd);
+  const insert = `[${selected}](${url})`;
+  ta.value = before + insert + after;
+  ta.focus();
+}
+
+function insertCodeBlock() {
+  const lang = prompt('Language (e.g. javascript, php):') || '';
+  const ta = document.getElementById('post-content');
+  const start = ta.selectionStart;
+  const selected = ta.value.substring(start, ta.selectionEnd) || 'code here';
+  const before = ta.value.substring(0, start);
+  const after = ta.value.substring(ta.selectionEnd);
+  const insert = `\n\`\`\`${lang}\n${selected}\n\`\`\`\n`;
+  ta.value = before + insert + after;
+  ta.focus();
+}
+
+// Meta desc counter
+function updateMetaDescCount() {
+  const len = document.getElementById('post-meta-desc').value.length;
+  const el = document.getElementById('meta-desc-count');
+  el.textContent = `${len} / 160`;
+  el.style.color = len > 160 ? 'var(--red)' : 'var(--text-4)';
+}
+document.getElementById('post-meta-desc').addEventListener('input', updateMetaDescCount);
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
+    save('draft');
+  }
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'P') {
+    e.preventDefault();
+    save('published');
+  }
+});
+</script>
+</body>
+</html>

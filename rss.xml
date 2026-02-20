@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Static RSS fallback — live RSS is served from Apps Script -->
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yegappan Sekar — Blog</title>
+    <link>https://YEGAPPAN-S.github.io</link>
+    <description>Engineering articles on WordPress, Shopify, automation, and ecommerce.</description>
+    <language>en-us</language>
+    <atom:link href="https://YEGAPPAN-S.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+  </channel>
+</rss>

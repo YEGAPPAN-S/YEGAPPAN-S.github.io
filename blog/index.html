@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Yegappan Sekar</title>
+  <meta name="description" content="Writing on WordPress engineering, Shopify development, Google Apps Script automation, and ecommerce systems.">
+  <link rel="canonical" href="https://YEGAPPAN-S.github.io/blog/">
+  <meta property="og:url" content="https://YEGAPPAN-S.github.io/blog/">
+  <meta property="og:title" content="Blog — Yegappan Sekar">
+  <meta property="og:description" content="Engineering articles on WordPress, Shopify, automation, and ecommerce systems.">
+  <meta property="og:image" content="https://YEGAPPAN-S.github.io/images/og-home.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Yegappan's Blog RSS" href="/rss.xml">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo">Yega<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="/">Home</a></li><li><a href="/about.html">About</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__actions">
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" style="padding-bottom:2rem;">
+  <div class="container">
+    <div class="hero__eyebrow">Writing</div>
+    <h1 class="hero__title" style="font-size:clamp(1.75rem,4vw,2.75rem);">
+      Engineering <em>notes</em>
+    </h1>
+    <p style="color:var(--text-2); font-size:1.0625rem; max-width:520px;">
+      Deep dives on WordPress, Shopify, Google Apps Script, automation, and building at scale.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <!-- Filters row -->
+    <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border);">
+      <!-- Search -->
+      <div class="search-bar" style="flex:1; min-width:200px; max-width:340px;">
+        <svg class="search-bar__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="form-input search-bar__input" id="search-input" placeholder="Search posts..." aria-label="Search posts">
+      </div>
+
+      <!-- Category filter -->
+      <select class="form-select" id="category-filter" style="width:auto; max-width:180px;" aria-label="Filter by category">
+        <option value="">All categories</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Product">Product</option>
+        <option value="Automation">Automation</option>
+        <option value="Career">Career</option>
+      </select>
+
+      <!-- Active filter chips -->
+      <div id="active-filters" style="display:flex; gap:0.5rem; flex-wrap:wrap;"></div>
+
+      <!-- RSS link -->
+      <a href="/rss.xml" style="margin-left:auto; display:flex; align-items:center; gap:0.5rem; font-family:var(--font-ui); font-size:0.8125rem; color:var(--text-3); text-decoration:none;" title="RSS Feed">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+        RSS
+      </a>
+    </div>
+
+    <!-- Posts list -->
+    <div id="posts-container" class="loading-placeholder">
+      <div class="skeleton" style="height:100px; border-radius:6px;"></div>
+      <div class="skeleton" style="height:100px; border-radius:6px;"></div>
+      <div class="skeleton" style="height:100px; border-radius:6px;"></div>
+    </div>
+
+    <!-- Pagination -->
+    <div id="pagination" class="pagination" style="display:none;"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">Yega<span style="color:var(--accent)">.</span></a>
+      <p class="footer__tagline">Senior Software Engineer · Coimbatore</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Navigation</div>
+      <ul class="footer__links">
+        <li><a href="/">Home</a></li><li><a href="/about.html">About</a></li>
+        <li><a href="/projects.html">Projects</a></li><li><a href="/blog/">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">Feed</div>
+      <ul class="footer__links">
+        <li><a href="/rss.xml">RSS Feed</a></li>
+        <li><a href="/sitemap.xml">Sitemap</a></li>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© <script>document.write(new Date().getFullYear())</script> Yegappan Sekar.</span>
+  </div>
+</footer>
+<button class="back-to-top" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18,15 12,9 6,15"/></svg>
+</button>
+
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/api.js"></script>
+<script>
+let state = {
+  page: 1,
+  limit: 8,
+  tag: '',
+  category: '',
+  q: '',
+  totalPages: 1,
+};
+
+// Parse URL params on load
+const params = new URLSearchParams(window.location.search);
+if (params.get('tag')) state.tag = params.get('tag');
+if (params.get('category')) state.category = params.get('category');
+if (params.get('q')) state.q = params.get('q');
+if (params.get('page')) state.page = parseInt(params.get('page')) || 1;
+
+const searchInput = document.getElementById('search-input');
+const categoryFilter = document.getElementById('category-filter');
+
+// Pre-fill UI
+searchInput.value = state.q;
+categoryFilter.value = state.category;
+
+// Debounced search
+let searchTimer;
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    state.q = searchInput.value.trim();
+    state.page = 1;
+    loadPosts();
+  }, 400);
+});
+
+categoryFilter.addEventListener('change', () => {
+  state.category = categoryFilter.value;
+  state.page = 1;
+  loadPosts();
+});
+
+function updateActiveFilters() {
+  const el = document.getElementById('active-filters');
+  const chips = [];
+  if (state.tag) chips.push(`<button class="tag" style="cursor:pointer;" onclick="removeTag()">Tag: ${state.tag} ×</button>`);
+  el.innerHTML = chips.join('');
+}
+
+function removeTag() {
+  state.tag = '';
+  state.page = 1;
+  updateActiveFilters();
+  loadPosts();
+}
+
+function renderPosts(posts) {
+  if (!posts.length) {
+    return '<div style="padding:3rem 0; text-align:center; color:var(--text-3); font-family:var(--font-ui);">No posts found. <button class="btn btn--ghost btn--sm" onclick="clearFilters()">Clear filters</button></div>';
+  }
+  return posts.map(post => `
+    <article class="post-card">
+      <div class="post-card__meta">
+        <a href="/blog/?category=${encodeURIComponent(post.category || '')}" class="post-card__category">${post.category || 'Engineering'}</a>
+        <span>${formatDate(post.published_at)}</span>
+        <span>${post.reading_time || 1} min read</span>
+      </div>
+      <h2 class="post-card__title">
+        <a href="/blog/post.html?slug=${encodeURIComponent(post.slug)}">${post.title}</a>
+      </h2>
+      <p class="post-card__excerpt">${post.excerpt || ''}</p>
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+        <div class="tags">
+          ${(post.tags || '').split(',').filter(t=>t.trim()).slice(0,4).map(t =>
+            `<a href="/blog/?tag=${encodeURIComponent(t.trim())}" class="tag">${t.trim()}</a>`
+          ).join('')}
+        </div>
+        <a href="/blog/post.html?slug=${encodeURIComponent(post.slug)}" class="btn btn--ghost btn--sm" style="flex-shrink:0;">
+          Read →
+        </a>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderPagination(meta) {
+  const pg = document.getElementById('pagination');
+  if (meta.totalPages <= 1) { pg.style.display = 'none'; return; }
+
+  pg.style.display = 'flex';
+  const pages = [];
+
+  if (meta.page > 1) pages.push(`<button class="pagination__btn" onclick="goPage(${meta.page - 1})">← Prev</button>`);
+  
+  for (let i = 1; i <= meta.totalPages; i++) {
+    if (i === 1 || i === meta.totalPages || Math.abs(i - meta.page) <= 2) {
+      pages.push(`<button class="pagination__btn ${i === meta.page ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`);
+    } else if (Math.abs(i - meta.page) === 3) {
+      pages.push('<span style="padding:0 0.5rem; color:var(--text-4);">…</span>');
+    }
+  }
+
+  if (meta.page < meta.totalPages) pages.push(`<button class="pagination__btn" onclick="goPage(${meta.page + 1})">Next →</button>`);
+  pg.innerHTML = pages.join('');
+}
+
+function goPage(p) {
+  state.page = p;
+  loadPosts();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function clearFilters() {
+  state = { ...state, tag: '', category: '', q: '', page: 1 };
+  searchInput.value = '';
+  categoryFilter.value = '';
+  updateActiveFilters();
+  loadPosts();
+}
+
+async function loadPosts() {
+  const container = document.getElementById('posts-container');
+  container.innerHTML = '<div class="loading-placeholder"><div class="skeleton" style="height:100px; border-radius:6px;"></div><div class="skeleton" style="height:100px; border-radius:6px;"></div><div class="skeleton" style="height:100px; border-radius:6px;"></div></div>';
+
+  updateActiveFilters();
+
+  // Update URL
+  const url = new URL(window.location);
+  ['page','tag','category','q'].forEach(k => {
+    if (state[k] && (k !== 'page' || state.page > 1)) url.searchParams.set(k, state[k]);
+    else url.searchParams.delete(k);
+  });
+  history.replaceState(null, '', url.toString());
+
+  try {
+    const res = await API.getPosts(state);
+    container.innerHTML = renderPosts(res.data || []);
+    renderPagination(res.meta || { page: 1, totalPages: 1 });
+    state.totalPages = res.meta?.totalPages || 1;
+  } catch (err) {
+    container.innerHTML = `
+      <div class="alert alert--error">
+        Failed to load posts. Please check your connection and try again.
+        <br><small>${err.message}</small>
+      </div>
+    `;
+  }
+}
+
+// Update page title when filtering
+function updatePageTitle() {
+  if (state.tag) document.title = `Tag: ${state.tag} — Yegappan's Blog`;
+  else if (state.category) document.title = `${state.category} — Yegappan's Blog`;
+  else document.title = 'Blog — Yegappan Sekar';
+}
+
+loadPosts();
+</script>
+</body>
+</html>
