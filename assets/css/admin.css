@@ -373,6 +373,7 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
+  padding: var(--space-6);
 }
 
 .editor-meta__section {
