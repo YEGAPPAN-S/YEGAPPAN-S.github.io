@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects — Yegappan Sekar</title>
-  <meta name="description" content="Ecommerce plugins, automation systems, and tools built by Yegappan Sekar — including Retainful, Afflr, WPLoyalty, and more.">
+  <meta name="description"
+    content="Ecommerce plugins, automation systems, and tools built by Yegappan Sekar — including Retainful, Afflr, WPLoyalty, and more.">
   <link rel="canonical" href="https://YEGAPPAN-S.github.io/projects.html">
   <meta property="og:url" content="https://YEGAPPAN-S.github.io/projects.html">
   <meta property="og:title" content="Projects — Yegappan Sekar">
@@ -12,279 +14,326 @@
   <meta property="og:image" content="https://YEGAPPAN-S.github.io/images/og-home.png">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="icon" href="/images/favicon.ico">
+  <script type="text/javascript" src="/assets/js/tracking.js"></script>
+
 </head>
+
 <body>
 
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">Yega<span>.</span></a>
-    <ul class="nav__links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/projects.html" class="active">Projects</a></li>
-      <li><a href="/blog/">Blog</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
-    <div class="nav__actions">
-      <button class="theme-toggle" aria-label="Toggle theme">
-        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-      <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="container--narrow">
-    <div class="hero__eyebrow">Portfolio</div>
-    <h1 class="hero__title" style="font-size:clamp(2rem,5vw,3rem);">
-      Things I've <em>shipped</em>
-    </h1>
-    <p class="hero__subtitle">
-      A mix of commercial products, internal tools, and side projects — 
-      all built to solve real problems at scale.
-    </p>
-  </div>
-</section>
-
-<!-- Commercial Products -->
-<section class="section">
-  <div class="container">
-    <div class="section__header fade-in">
-      <div class="section__eyebrow">At Cartrabbit</div>
-      <h2 class="section__title">Commercial Products</h2>
-    </div>
-
-    <div class="posts-grid posts-grid--2col">
-      <div class="project-card fade-in">
-        <div class="project-card__header">
-          <div>
-            <h3 class="project-card__title">Retainful</h3>
-            <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Email Marketing Automation</p>
-          </div>
-          <span class="badge badge--published">Live</span>
-        </div>
-        <p class="project-card__desc">
-          Abandoned cart recovery + email automation for WooCommerce and Shopify. 
-          Features include multi-step email sequences, dynamic coupon generation, 
-          real-time analytics, and a visual workflow builder. 10,000+ active installs.
-        </p>
-        <div class="tags" style="margin-bottom:1rem;">
-          <span class="tag">WordPress</span><span class="tag">Shopify</span>
-          <span class="tag">PHP</span><span class="tag">Email Automation</span>
-          <span class="tag">WooCommerce</span>
-        </div>
-        <div class="project-card__links">
-          <a href="https://www.retainful.com" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Visit Site</a>
-          <a href="https://wordpress.org/plugins/retainful-next-order-coupon-for-woocommerce/" target="_blank" rel="noopener" class="btn btn--outline btn--sm">WordPress.org</a>
-        </div>
-      </div>
-
-      <div class="project-card fade-in">
-        <div class="project-card__header">
-          <div>
-            <h3 class="project-card__title">Yuko</h3>
-            <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Affiliate Marketing Plugin</p>
-          </div>
-          <span class="badge badge--published">Live</span>
-        </div>
-        <p class="project-card__desc">
-          Full-featured affiliate marketing platform for WooCommerce. 
-          Tracks referral clicks and purchases, manages commission structures, 
-          automates payouts, and provides affiliates a dedicated portal. Built from scratch.
-        </p>
-        <div class="tags" style="margin-bottom:1rem;">
-          <span class="tag">WordPress</span><span class="tag">Elementor</span>
-          <span class="tag">MySQL</span><span class="tag">REST API</span>
-        </div>
-        <div class="project-card__links">
-          <a href="https://yuko.so" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Visit Site</a>
-        </div>
-      </div>
-
-      <div class="project-card fade-in">
-        <div class="project-card__header">
-          <div>
-            <h3 class="project-card__title">WPLoyalty</h3>
-            <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Points & Rewards</p>
-          </div>
-          <span class="badge badge--published">Live</span>
-        </div>
-        <p class="project-card__desc">
-          Customer loyalty program for WooCommerce. Gamifies retention with points for purchases, 
-          reviews, referrals, and social shares. Customizable reward rules, expiry logic, 
-          and a beautiful customer-facing points portal.
-        </p>
-        <div class="tags" style="margin-bottom:1rem;">
-          <span class="tag">WordPress</span><span class="tag">WooCommerce</span><span class="tag">PHP</span>
-        </div>
-        <div class="project-card__links">
-          <a href="https://wployalty.net" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Visit Site</a>
-        </div>
-      </div>
-
-      <div class="project-card fade-in">
-        <div class="project-card__header">
-          <div>
-            <h3 class="project-card__title">UpsellWP</h3>
-            <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Upsells & Cross-sells</p>
-          </div>
-          <span class="badge badge--published">Live</span>
-        </div>
-        <p class="project-card__desc">
-          Smart upsell and cross-sell plugin for WooCommerce. Displays targeted product offers 
-          at checkout, in cart, and post-purchase. Rule-based targeting engine with 
-          A/B testing and conversion analytics.
-        </p>
-        <div class="tags" style="margin-bottom:1rem;">
-          <span class="tag">WordPress</span><span class="tag">WooCommerce</span><span class="tag">PHP</span><span class="tag">JavaScript</span>
-        </div>
-        <div class="project-card__links">
-          <a href="https://upsellwp.com" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Visit Site</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Automation Tools -->
-<section class="section section--alt">
-  <div class="container">
-    <div class="section__header fade-in">
-      <div class="section__eyebrow">Internal tooling</div>
-      <h2 class="section__title">Automation Systems</h2>
-    </div>
-
-    <div class="posts-grid posts-grid--2col">
-      <div class="project-card fade-in">
-        <div class="project-card__header">
-          <div>
-            <h3 class="project-card__title">Shopify App Detector</h3>
-            <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Lead Generation Tool</p>
-          </div>
-        </div>
-        <p class="project-card__desc">
-          Google Apps Script system that analyzed 6,000+ ecommerce website URLs to detect 
-          Shopify stores, installed apps (Klaviyo, Retainful, etc.), and marketing stack. 
-          Used parallel batch processing with auto-resume for overnight runs.
-        </p>
-        <div class="tags" style="margin-bottom:1rem;">
-          <span class="tag">Google Apps Script</span><span class="tag">JavaScript</span><span class="tag">Sheets</span>
-        </div>
-        <div class="project-card__links">
-          <a href="https://github.com/YEGAPPAN-S" target="_blank" rel="noopener" class="btn btn--outline btn--sm">GitHub</a>
-          <a href="/blog/post.html?slug=shopify-app-detector-google-apps-script" class="btn btn--ghost btn--sm">Read Post →</a>
-        </div>
-      </div>
-
-      <div class="project-card fade-in">
-        <div class="project-card__header">
-          <div>
-            <h3 class="project-card__title">Bulk Email Verifier</h3>
-            <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Data Quality Tool</p>
-          </div>
-        </div>
-        <p class="project-card__desc">
-          Bulk email validation system built on Google Apps Script. Validates syntax, 
-          checks MX records, and detects disposable email providers. Processes 
-          10,000+ emails per run with resumable queue and detailed reporting.
-        </p>
-        <div class="tags" style="margin-bottom:1rem;">
-          <span class="tag">Google Apps Script</span><span class="tag">Email</span><span class="tag">DNS</span>
-        </div>
-        <div class="project-card__links">
-          <a href="https://github.com/YEGAPPAN-S" target="_blank" rel="noopener" class="btn btn--outline btn--sm">GitHub</a>
-        </div>
-      </div>
-
-      <div class="project-card fade-in">
-        <div class="project-card__header">
-          <div>
-            <h3 class="project-card__title">Contact Scraper Extension</h3>
-            <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Chrome Extension</p>
-          </div>
-        </div>
-        <p class="project-card__desc">
-          Chrome extension for bulk contact extraction from business directories. 
-          Built on Manifest V3 with service worker persistence via Chrome Alarms API. 
-          Extracts emails, phones, addresses with ~200 URLs/hour throughput.
-        </p>
-        <div class="tags" style="margin-bottom:1rem;">
-          <span class="tag">Chrome Extension</span><span class="tag">JavaScript</span><span class="tag">MV3</span>
-        </div>
-        <div class="project-card__links">
-          <a href="/blog/post.html?slug=chrome-extension-web-scraper-lessons" class="btn btn--ghost btn--sm">Read Post →</a>
-        </div>
-      </div>
-
-      <div class="project-card fade-in">
-        <div class="project-card__header">
-          <div>
-            <h3 class="project-card__title">Website Monitor</h3>
-            <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Operations Tool</p>
-          </div>
-        </div>
-        <p class="project-card__desc">
-          Uptime and performance monitor for 10+ production ecommerce websites. 
-          Google Apps Script checks availability every 10 minutes, alerts on downtime, 
-          tracks response times, and logs to Google Sheets dashboard.
-        </p>
-        <div class="tags" style="margin-bottom:1rem;">
-          <span class="tag">Google Apps Script</span><span class="tag">Monitoring</span><span class="tag">Alerts</span>
-        </div>
-        <div class="project-card__links">
-          <a href="https://github.com/YEGAPPAN-S" target="_blank" rel="noopener" class="btn btn--outline btn--sm">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Open Source note -->
-<section class="section" style="text-align:center;">
-  <div class="container--narrow fade-in">
-    <h2 style="margin-bottom:1rem;">More on GitHub</h2>
-    <p style="color:var(--text-2); margin-bottom:2rem;">
-      Most of my automation scripts and utilities are open source. 
-      Check my GitHub for code, snippets, and ongoing projects.
-    </p>
-    <a href="https://github.com/YEGAPPAN-S" target="_blank" rel="noopener" class="btn btn--primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-      View GitHub Profile
-    </a>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="footer__inner">
-    <div class="footer__brand">
-      <a href="/" class="footer__logo">Yega<span style="color:var(--accent)">.</span></a>
-      <p class="footer__tagline">Senior Web Engineer · Coimbatore</p>
-    </div>
-    <div>
-      <div class="footer__col-title">Navigation</div>
-      <ul class="footer__links">
-        <li><a href="/">Home</a></li><li><a href="/about.html">About</a></li>
-        <li><a href="/projects.html">Projects</a></li><li><a href="/blog/">Blog</a></li>
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">Yega<span>.</span></a>
+      <ul class="nav__links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/projects.html" class="active">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
+      <div class="nav__actions">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
     </div>
-    <div>
-      <div class="footer__col-title">Legal</div>
-      <ul class="footer__links">
-        <li><a href="/privacy.html">Privacy Policy</a></li>
-        <li><a href="/sitemap.xml">Sitemap</a></li>
-      </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="container--narrow">
+      <div class="hero__eyebrow">Portfolio</div>
+      <h1 class="hero__title" style="font-size:clamp(2rem,5vw,3rem);">
+        Things I've <em>shipped</em>
+      </h1>
+      <p class="hero__subtitle">
+        A mix of commercial products, internal tools, and side projects —
+        all built to solve real problems at scale.
+      </p>
     </div>
-  </div>
-  <div class="footer__bottom">
-    <span>© <script>document.write(new Date().getFullYear())</script> Yegappan Sekar.</span>
-  </div>
-</footer>
-<button class="back-to-top" aria-label="Back to top">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18,15 12,9 6,15"/></svg>
-</button>
-<script src="/assets/js/app.js"></script>
+  </section>
+
+  <!-- Commercial Products -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__eyebrow">At Cartrabbit</div>
+        <h2 class="section__title">Commercial Products</h2>
+      </div>
+
+      <div class="posts-grid posts-grid--2col">
+        <div class="project-card fade-in">
+          <div class="project-card__header">
+            <div>
+              <h3 class="project-card__title">Retainful</h3>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Email
+                Marketing Automation</p>
+            </div>
+            <span class="badge badge--published">Live</span>
+          </div>
+          <p class="project-card__desc">
+            Abandoned cart recovery + email automation for WooCommerce and Shopify.
+            Features include multi-step email sequences, dynamic coupon generation,
+            real-time analytics, and a visual workflow builder. 10,000+ active installs.
+          </p>
+          <div class="tags" style="margin-bottom:1rem;">
+            <span class="tag">WordPress</span><span class="tag">Shopify</span>
+            <span class="tag">PHP</span><span class="tag">Email Automation</span>
+            <span class="tag">WooCommerce</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://www.retainful.com" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Visit
+              Site</a>
+            <a href="https://wordpress.org/plugins/retainful-next-order-coupon-for-woocommerce/" target="_blank"
+              rel="noopener" class="btn btn--outline btn--sm">WordPress.org</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-card__header">
+            <div>
+              <h3 class="project-card__title">Yuko</h3>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">
+                Affiliate Marketing Plugin</p>
+            </div>
+            <span class="badge badge--published">Live</span>
+          </div>
+          <p class="project-card__desc">
+            Full-featured affiliate marketing platform for WooCommerce.
+            Tracks referral clicks and purchases, manages commission structures,
+            automates payouts, and provides affiliates a dedicated portal. Built from scratch.
+          </p>
+          <div class="tags" style="margin-bottom:1rem;">
+            <span class="tag">WordPress</span><span class="tag">Elementor</span>
+            <span class="tag">MySQL</span><span class="tag">REST API</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://yuko.so" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Visit Site</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-card__header">
+            <div>
+              <h3 class="project-card__title">WPLoyalty</h3>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">
+                Points & Rewards</p>
+            </div>
+            <span class="badge badge--published">Live</span>
+          </div>
+          <p class="project-card__desc">
+            Customer loyalty program for WooCommerce. Gamifies retention with points for purchases,
+            reviews, referrals, and social shares. Customizable reward rules, expiry logic,
+            and a beautiful customer-facing points portal.
+          </p>
+          <div class="tags" style="margin-bottom:1rem;">
+            <span class="tag">WordPress</span><span class="tag">WooCommerce</span><span class="tag">PHP</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://wployalty.net" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Visit
+              Site</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-card__header">
+            <div>
+              <h3 class="project-card__title">UpsellWP</h3>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">
+                Upsells & Cross-sells</p>
+            </div>
+            <span class="badge badge--published">Live</span>
+          </div>
+          <p class="project-card__desc">
+            Smart upsell and cross-sell plugin for WooCommerce. Displays targeted product offers
+            at checkout, in cart, and post-purchase. Rule-based targeting engine with
+            A/B testing and conversion analytics.
+          </p>
+          <div class="tags" style="margin-bottom:1rem;">
+            <span class="tag">WordPress</span><span class="tag">WooCommerce</span><span class="tag">PHP</span><span
+              class="tag">JavaScript</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://upsellwp.com" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Visit
+              Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Automation Tools -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__eyebrow">Internal tooling</div>
+        <h2 class="section__title">Automation Systems</h2>
+      </div>
+
+      <div class="posts-grid posts-grid--2col">
+        <div class="project-card fade-in">
+          <div class="project-card__header">
+            <div>
+              <h3 class="project-card__title">Shopify App Detector</h3>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Lead
+                Generation Tool</p>
+            </div>
+          </div>
+          <p class="project-card__desc">
+            Google Apps Script system that analyzed 6,000+ ecommerce website URLs to detect
+            Shopify stores, installed apps (Klaviyo, Retainful, etc.), and marketing stack.
+            Used parallel batch processing with auto-resume for overnight runs.
+          </p>
+          <div class="tags" style="margin-bottom:1rem;">
+            <span class="tag">Google Apps Script</span><span class="tag">JavaScript</span><span
+              class="tag">Sheets</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://github.com/YEGAPPAN-S" target="_blank" rel="noopener"
+              class="btn btn--outline btn--sm">GitHub</a>
+            <a href="/blog/post.html?slug=shopify-app-detector-google-apps-script" class="btn btn--ghost btn--sm">Read
+              Post →</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-card__header">
+            <div>
+              <h3 class="project-card__title">Bulk Email Verifier</h3>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">Data
+                Quality Tool</p>
+            </div>
+          </div>
+          <p class="project-card__desc">
+            Bulk email validation system built on Google Apps Script. Validates syntax,
+            checks MX records, and detects disposable email providers. Processes
+            10,000+ emails per run with resumable queue and detailed reporting.
+          </p>
+          <div class="tags" style="margin-bottom:1rem;">
+            <span class="tag">Google Apps Script</span><span class="tag">Email</span><span class="tag">DNS</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://github.com/YEGAPPAN-S" target="_blank" rel="noopener"
+              class="btn btn--outline btn--sm">GitHub</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-card__header">
+            <div>
+              <h3 class="project-card__title">Contact Scraper Extension</h3>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">
+                Chrome Extension</p>
+            </div>
+          </div>
+          <p class="project-card__desc">
+            Chrome extension for bulk contact extraction from business directories.
+            Built on Manifest V3 with service worker persistence via Chrome Alarms API.
+            Extracts emails, phones, addresses with ~200 URLs/hour throughput.
+          </p>
+          <div class="tags" style="margin-bottom:1rem;">
+            <span class="tag">Chrome Extension</span><span class="tag">JavaScript</span><span class="tag">MV3</span>
+          </div>
+          <div class="project-card__links">
+            <a href="/blog/post.html?slug=chrome-extension-web-scraper-lessons" class="btn btn--ghost btn--sm">Read Post
+              →</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-card__header">
+            <div>
+              <h3 class="project-card__title">Website Monitor</h3>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); margin-top:0.25rem;">
+                Operations Tool</p>
+            </div>
+          </div>
+          <p class="project-card__desc">
+            Uptime and performance monitor for 10+ production ecommerce websites.
+            Google Apps Script checks availability every 10 minutes, alerts on downtime,
+            tracks response times, and logs to Google Sheets dashboard.
+          </p>
+          <div class="tags" style="margin-bottom:1rem;">
+            <span class="tag">Google Apps Script</span><span class="tag">Monitoring</span><span
+              class="tag">Alerts</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://github.com/YEGAPPAN-S" target="_blank" rel="noopener"
+              class="btn btn--outline btn--sm">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source note -->
+  <section class="section" style="text-align:center;">
+    <div class="container--narrow fade-in">
+      <h2 style="margin-bottom:1rem;">More on GitHub</h2>
+      <p style="color:var(--text-2); margin-bottom:2rem;">
+        Most of my automation scripts and utilities are open source.
+        Check my GitHub for code, snippets, and ongoing projects.
+      </p>
+      <a href="https://github.com/YEGAPPAN-S" target="_blank" rel="noopener" class="btn btn--primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+        </svg>
+        View GitHub Profile
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo">Yega<span style="color:var(--accent)">.</span></a>
+        <p class="footer__tagline">Senior Web Engineer · Coimbatore</p>
+      </div>
+      <div>
+        <div class="footer__col-title">Navigation</div>
+        <ul class="footer__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/projects.html">Projects</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Legal</div>
+        <ul class="footer__links">
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>©
+        <script>document.write(new Date().getFullYear())</script> Yegappan Sekar.
+      </span>
+    </div>
+  </footer>
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18,15 12,9 6,15" />
+    </svg>
+  </button>
+  <script src="/assets/js/app.js"></script>
 </body>
+
 </html>
