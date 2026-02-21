@@ -1,23 +1,18 @@
 /**
- * api.js — Frontend API client v1.2.0
+ * api.js v1.3.0 — Final production version
  *
- * CORS FINAL FIX:
- * Apps Script POST requests sometimes redirect to script.googleusercontent.com
- * which drops CORS headers entirely — causing "No ACAO header" errors.
+ * Uses Cloudflare Worker as proxy to bypass Apps Script's 302 redirect
+ * which drops CORS headers. All requests go through the worker which
+ * fetches GAS server-side and returns the result with correct CORS headers.
  *
- * Solution: Encode ALL requests (including "writes") as GET with data in URL params.
- * GET requests:
- *   ✅ Never trigger preflight
- *   ✅ Never lose CORS headers through redirects
- *   ✅ Work 100% reliably with Apps Script
- *
- * Sensitive data (passwords) is still protected by HTTPS.
+ * Update WORKER_URL below after deploying your Cloudflare Worker.
  */
 
+// ── UPDATE THIS after deploying the Cloudflare Worker ─────────
 const API_BASE = window.SITE_CONFIG?.apiUrl
-  || 'https://script.google.com/macros/s/AKfycby5l4oClNYYHHxl9RM03ueaFAmCiYHhWS_z9v-SMwhAm7cKIyl-77wrHfKy97w5aIx0/exec';
+  || 'https://gas-proxy.yegappans2910.workers.dev';
+// ─────────────────────────────────────────────────────────────
 
-// ── Core: all requests are GET with params in URL ──────────────
 async function apiCall(path, params) {
   const url = new URL(API_BASE);
   url.searchParams.set('path', path);
@@ -25,15 +20,14 @@ async function apiCall(path, params) {
   if (params) {
     Object.entries(params).forEach(([k, v]) => {
       if (v !== undefined && v !== null && v !== '') {
-        // Stringify objects/arrays
-        url.searchParams.set(k, typeof v === 'object' ? JSON.stringify(v) : v);
+        url.searchParams.set(k, typeof v === 'object' ? JSON.stringify(v) : String(v));
       }
     });
   }
 
   let response;
   try {
-    response = await fetch(url.toString(), { redirect: 'follow' });
+    response = await fetch(url.toString());
   } catch (err) {
     throw new Error('Network error — check your internet connection.');
   }
@@ -42,10 +36,10 @@ async function apiCall(path, params) {
   try {
     data = await response.json();
   } catch (e) {
-    throw new Error('Invalid response from server. Check your Apps Script deployment URL.');
+    throw new Error('Bad response from server. Check your Worker URL in app.js.');
   }
 
-  if (data.error && data.code && data.code >= 400) {
+  if (data.error && data.code >= 400) {
     const err = new Error(data.error);
     err.code = data.code;
     throw err;
@@ -55,7 +49,6 @@ async function apiCall(path, params) {
 
 // ── Public API ─────────────────────────────────────────────────
 const API = {
-
   getSettings() {
     return apiCall('public/settings');
   },
@@ -76,9 +69,7 @@ const API = {
   Admin: {
     _token: null,
 
-    getToken() {
-      return this._token || localStorage.getItem('admin_token');
-    },
+    getToken() { return this._token || localStorage.getItem('admin_token'); },
 
     setToken(token, expiresAt) {
       this._token = token;
@@ -125,16 +116,15 @@ const API = {
       if (token) return apiCall('admin/logout', { token }).catch(() => {});
     },
 
-    getPosts()           { return apiCall('admin/posts',    { token: this.getToken() }); },
-    getStats()           { return apiCall('admin/stats',    { token: this.getToken() }); },
-    getSettings()        { return apiCall('admin/settings', { token: this.getToken() }); },
-
-    createPost(data)     { return apiCall('admin/posts/create',  { token: this.getToken(), ...data }); },
-    updatePost(id, data) { return apiCall('admin/posts/update',  { token: this.getToken(), id, ...data }); },
-    deletePost(id)       { return apiCall('admin/posts/delete',  { token: this.getToken(), id }); },
-    publishPost(id)      { return apiCall('admin/posts/publish',   { token: this.getToken(), id }); },
-    unpublishPost(id)    { return apiCall('admin/posts/unpublish', { token: this.getToken(), id }); },
-    updateSettings(data) { return apiCall('admin/settings/update', { token: this.getToken(), ...data }); },
+    getPosts()           { return apiCall('admin/posts',            { token: this.getToken() }); },
+    getStats()           { return apiCall('admin/stats',            { token: this.getToken() }); },
+    getSettings()        { return apiCall('admin/settings',         { token: this.getToken() }); },
+    createPost(data)     { return apiCall('admin/posts/create',     { token: this.getToken(), ...data }); },
+    updatePost(id, data) { return apiCall('admin/posts/update',     { token: this.getToken(), id, ...data }); },
+    deletePost(id)       { return apiCall('admin/posts/delete',     { token: this.getToken(), id }); },
+    publishPost(id)      { return apiCall('admin/posts/publish',    { token: this.getToken(), id }); },
+    unpublishPost(id)    { return apiCall('admin/posts/unpublish',  { token: this.getToken(), id }); },
+    updateSettings(data) { return apiCall('admin/settings/update',  { token: this.getToken(), ...data }); },
   }
 };
 
